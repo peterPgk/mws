@@ -129,9 +129,9 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
-        ],
+        'password' => [
+            'regex' => 'In Mobile Wave Solutions passwords must contain at least one number and both uppercase and lowercase letters.'
+        ]
     ],
 
     /*

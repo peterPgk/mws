@@ -18,11 +18,10 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::group(['middleware' => 'auth'], function () {
+    Route::resource('survey', 'SurveyController')->except(['index']);
 
-Route::get('/profile/{user}', 'ProfileController@edit')->name('profile.edit');
-Route::put('/profile/{user}', 'ProfileController@update');
-
-//Route::group('/survey', \App\Http\Controllers\SurveyController::class);
-//Route::group('/survey', 'SurveyController');
-
-Route::resource('survey', 'SurveyController')->except(['index']);
+    Route::resource('profile', 'ProfileController', ['parameters' => [
+        'profile' => 'user'
+    ]])->only(['edit', 'update'])->middleware('can.edit');
+});

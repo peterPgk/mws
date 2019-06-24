@@ -11,3 +11,6 @@ php artisan ide-helper:generate
 - make sure all `storage` directory and `bootstrap/cache` are writable
 
 ###Plugins
+
+- Form Requests
+- CanEdit Middleware
