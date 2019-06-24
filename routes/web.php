@@ -19,6 +19,9 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('/profile/{user}', 'ProfileController@edit')->name('profile.edit');
+Route::put('/profile/{user}', 'ProfileController@update');
+
 //Route::group('/survey', \App\Http\Controllers\SurveyController::class);
 //Route::group('/survey', 'SurveyController');
 

@@ -23,6 +23,6 @@ class Answer extends Model
      */
     public function users()
     {
-        return $this->belongsToMany(User::class, 'user_answer')->with('question');
+        return $this->belongsToMany(User::class, 'user_answer');
     }
 }

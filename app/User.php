@@ -64,7 +64,15 @@ class User extends Authenticatable
      */
     public function answers(): Relation
     {
-        return $this->belongsToMany(Answer::class, 'user_answer')->with('question');
+        return $this->belongsToMany(Answer::class, 'user_answer');
+    }
+
+    /**
+     * @return Collection
+     */
+    public function results()
+    {
+        return Question::byUser()->get();
     }
 
     /*

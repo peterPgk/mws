@@ -77,8 +77,9 @@
                             @foreach($question->answers as $answer)
 
                                 <label class="check">
+                                    <input type="hidden" value="{{ $question->id }}" name="questions[question_{{ $question->id }}][id]">
                                     <input type="checkbox"
-                                           name="questions[{{ $question->id }}][answers][]"
+                                           name="questions[question_{{ $question->id }}][answers][]"
                                            id="{{ $question->id }}_{{ $answer->id }}"
                                            value="{{ $answer->id }}"
                                     >
