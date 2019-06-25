@@ -24,4 +24,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('profile', 'ProfileController', ['parameters' => [
         'profile' => 'user'
     ]])->only(['edit', 'update'])->middleware('can.edit');
+
+    Route::resource('questions', 'QuestionController')->except('show');
 });

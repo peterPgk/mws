@@ -29,22 +29,9 @@ class ProfileController extends Controller
      */
     public function update(UpdateUser $request, User $user)
     {
-        //Validator will filter all provided data, and return only validated one
-//        $data = $request->validate($rules);
+        $user->update($request->validated());
 
-        //Handle checkbox
-//        $data['in_probation'] = $request->has('in_probation') && $request->get('in_probation');
-
-//        $user =  DB::transaction(function () use ($user, $data) {
-
-        $data = $request->validated();
-        $user->update($data);
-//            $user->syncRoles($data['role']);
-//
-//            return $user;
-//        });
-
-//        flash('The '. $user->name . ' was edited successfully')->success();
+        flash('The '. $user->name . ' was edited successfully')->success();
 
         return redirect()->route('profile.edit', compact('user'));
     }

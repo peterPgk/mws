@@ -2,40 +2,46 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Queue;
+use Illuminate\Database\Eloquent\Relations\Relation;
 
 class Question extends Model
 {
-    protected $fillable = [];
+    protected $fillable = ['text'];
 
-    public function answers()
+    /**
+     * @return Relation
+     */
+    public function answers(): Relation
     {
         return $this->hasMany(Answer::class);
     }
 
-    public function scopeByUser($query, User $user = null)
+    /**
+     * @param Builder $query
+     * @param User|null $user
+     */
+    public function scopeByUser(Builder $query, User $user = null)
     {
         $user = $user ?? auth()->user();
 
-//        \DB::enableQueryLog();
-//
-        $query->with(['answers' => function($q) use ($user) {
-            $q->whereHas('users', function ($qr) use ($user) {
+        $query->with(['answers' => function(Builder $q) use ($user) {
+            $q->whereHas('users', function (Builder $qr) use ($user) {
                 $qr->where('user_id', $user->id);
             });
         }]);
-//
-//        dump(\DB::getQueryLog());
+    }
 
-//        $query->with('answers.users');
-
-//        $pivot = $this->answers()->getTable()
-
-//        $query->whereHas('answers.users', function ($q) use ($user) {
-////            $q->whereHas('users', function ($q) use ($user) {
-//                $q->where('user_id', $user->id);
-////            });
-//        })->with('answers');
+    /**
+     * Check if this question already has selected answers
+     *
+     * @return bool
+     */
+    public function hasAnswered()
+    {
+        return $this->load(['answers' => function ($q) {
+            $q->answered('users');
+        }])->answers->isNotEmpty();
     }
 }
