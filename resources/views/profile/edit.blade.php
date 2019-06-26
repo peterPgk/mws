@@ -70,15 +70,17 @@
                                            aria-describedby="passwordHelpBlock"
                                            autocomplete="new-password"
                                     >
-                                    <small id="passwordHelpBlock" class="form-text text-muted">
-                                        You can edit password or leave blank to keep existing one
-                                    </small>
-
                                     @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                     @enderror
+                                    @if (! $errors->has('password'))
+                                        <small id="passwordHelpBlock" class="form-text text-muted">
+                                            You can edit password or leave blank to keep existing one
+                                        </small>
+                                    @endif
+
                                 </div>
                             </div>
 

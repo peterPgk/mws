@@ -14,10 +14,10 @@ php artisan ide-helper:generate
 - make sure all `storage` directory and `bootstrap/cache` are writable
 
 ###Plugins
-
 - Form Requests
 - CanEdit Middleware
 
 ### TODO
-- customize error messages in Form Requests for fields of type `value[]`, to return name different then default `value.0`
-- make create question blade to show old inputs and errors. Need little tweak .
+- Because of use of VueCloneya plugin, need a little tweak to work correctly with error messages and old inputs. 
+- Customize error messages in Form Requests for fields of type `value[]`, to return name different then default `value.0`.
+This depends from the above one. 

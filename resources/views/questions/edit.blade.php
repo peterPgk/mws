@@ -11,7 +11,7 @@
                     </div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{ route('questions.store') }}" novalidate>
+                        <form method="POST" action="{{ route('questions.update', ['question' => $question]) }}" novalidate>
                             @method('PUT')
                             @csrf
 
@@ -37,6 +37,30 @@
                                 </div>
                             </div>
                             <div class="jumbotron jumbotron-fluid">
+
+{{--                                @foreach($question->answers as $key => $answer)--}}
+{{--                                    <div class="col-md-8">--}}
+{{--                                        <div class="input-group">--}}
+{{--                                            <input id="name"--}}
+{{--                                                   type="text"--}}
+{{--                                                   class="form-control @error('answers.*') is-invalid @enderror"--}}
+{{--                                                   name="answers[]"--}}
+{{--                                                   value="{{ old('answers.'. $key, $answer->text) }}"--}}
+{{--                                                   required--}}
+{{--                                                   autocomplete="text"--}}
+{{--                                                   autofocus--}}
+{{--                                            >--}}
+{{--                                            <div class="btn-group" role="group" aria-label="Second group">--}}
+{{--                                                <button type="button" class="btn btn-secondary" v-cloneya-add>--}}
+{{--                                                    <span class="fa fa-plus font-weight-bold">&#43;</span>--}}
+{{--                                                </button>--}}
+{{--                                                <button type="button" class="btn btn-secondary" v-cloneya-remove>--}}
+{{--                                                    <span class="fa fa-minus font-weight-bold">&#8722;</span>--}}
+{{--                                                </button>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                @endforeach--}}
 
 {{--                                                                                        --}}
 {{--     There is a problem, when have error , the newly created inputs are dissapired      --}}

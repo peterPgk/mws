@@ -64,7 +64,7 @@ class User extends Authenticatable
      */
     public function answers(): Relation
     {
-        return $this->belongsToMany(Answer::class, 'user_answer');
+        return $this->belongsToMany(Answer::class, 'user_answer')->withTimestamps();
     }
 
     /**

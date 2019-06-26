@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UpdateUser;
 use App\User;
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
 class ProfileController extends Controller

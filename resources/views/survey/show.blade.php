@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
+
+    {{ $errors }}
+
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
@@ -8,7 +11,18 @@
                     @csrf
                 <div class="form-section">
                     @foreach($questions as $question)
-                        <legend>{{ $question->text }}</legend>
+                        <legend class="show-control  @error('questions.question_'. $loop->iteration .'.answers') is-invalid @enderror"  >
+                            {{ $question->text }}
+                        </legend>
+
+
+                        @error('questions.question_'. $loop->iteration .'.answers')
+{{--                        {{ 'questions.question_'. $loop->iteration .'.answers' }}--}}
+                    {{ $errors->first('questions.question_'. $loop->iteration .'.answers') }}
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('questions.question_'. $loop->iteration .'.answers') }}</strong>
+                        </span>
+                        @enderror
 
                         <ul>
                             @foreach($question->answers as $answer)

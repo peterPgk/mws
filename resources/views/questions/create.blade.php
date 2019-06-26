@@ -45,9 +45,9 @@
 
 
 {{--                                @if ($errors->any())--}}
-{{--                                    @foreach ($errors->all() as $key => $error)--}}
+{{--                                    @foreach ($errors->all() as $error)--}}
 {{--                                        @if(\Str::contains($error, 'answers'))--}}
-{{--                                            @include('questions.vueclonea', ['oldData' => old('answers.'. ($key-1)), 'err' => $error])--}}
+{{--                                            @include('questions.vueclonea', ['oldData' => old('answers.'. $loop->iteration), 'err' => $error])--}}
 {{--                                        @endif--}}
 {{--                                    @endforeach--}}
 {{--                                @else--}}
