@@ -175,6 +175,11 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        /*
+         * Our (MWS) custom providers
+         */
+        App\Providers\MacrosServiceProvider::class,
+
     ],
 
     /*

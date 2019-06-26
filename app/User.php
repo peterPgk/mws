@@ -16,7 +16,8 @@ use Illuminate\Support\Collection;
  *
  * @property string $password
  *
- * @property Collection $answers
+ * @property Collection|Relation $answers
+ * @property int|string $id
  */
 class User extends Authenticatable
 {

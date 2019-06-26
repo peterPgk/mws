@@ -5,7 +5,17 @@ namespace App;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\Relation;
+use Illuminate\Support\Collection;
 
+
+/**
+ * Class Question
+ * @package App
+ *
+ * @property Collection|Relation $answers
+ * @property int|string $id
+ * @property int|string $text
+ */
 class Question extends Model
 {
     protected $fillable = ['text'];
@@ -26,7 +36,7 @@ class Question extends Model
     {
         $user = $user ?? auth()->user();
 
-        $query->with(['answers' => function(Builder $q) use ($user) {
+        $query->with(['answers' => function(Relation $q) use ($user) {
             $q->whereHas('users', function (Builder $qr) use ($user) {
                 $qr->where('user_id', $user->id);
             });
@@ -40,7 +50,7 @@ class Question extends Model
      */
     public function hasAnswered()
     {
-        return $this->load(['answers' => function ($q) {
+        return $this->load(['answers' => function (Relation $q) {
             $q->answered('users');
         }])->answers->isNotEmpty();
     }

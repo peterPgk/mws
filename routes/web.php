@@ -15,7 +15,7 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
 Route::group(['middleware' => 'auth'], function () {
-    Route::resource('survey', 'SurveyController')->except(['index']);
+    Route::resource('survey', 'SurveyController')->only(['create', 'store']);
 
     Route::resource('profile', 'ProfileController', ['parameters' => [
         'profile' => 'user'

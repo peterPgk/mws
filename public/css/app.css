@@ -11168,3 +11168,7 @@ a.text-dark:focus {
   display: block;
 }
 
+.show-control.is-invalid ~ .invalid-feedback + ul > label.check {
+  color: #e3342f;
+}
+

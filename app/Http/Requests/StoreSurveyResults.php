@@ -46,7 +46,6 @@ class StoreSurveyResults extends FormRequest
      */
     public function rules()
     {
-//        $questions = Question::with('answers')->get();
         return $this->questions->mapWithKeys(function ($question) {
             return [
                 'questions.question_'. $question->id => 'required',
